@@ -17,7 +17,7 @@ public class ParesYnones {
         //variables para los metodos
         String opcion = "";
         String pares_o_nones = "";
-       
+
         int usuario = 0;
         int numero_maquina;
         int suma = 0;
@@ -30,7 +30,7 @@ public class ParesYnones {
 
                 //pedir pares o nones el menu
                 pares_o_nones = pedirParesOnones().toLowerCase();
-                    //si no escribimos nones , nos metera en el bucle del los Pares , si le pones nones nos va a los nones
+                //si no escribimos nones , nos metera en el bucle del los Pares , si le pones nones nos va a los nones
                 if (!pares_o_nones.equalsIgnoreCase("Nones")) {
                     //Panel para informar que estas en los pares
                     JOptionPane.showMessageDialog(null, "Estoy dentro del los  Pares");
@@ -50,7 +50,7 @@ public class ParesYnones {
                         JOptionPane.showMessageDialog(null, " Has perdido");
                     }
                 } else {
-                        //Misma descripcion que arriba, solo qe si escribimos nones, nos lleva aqui
+                    //Misma descripcion que arriba, solo qe si escribimos nones, nos lleva aqui
                     JOptionPane.showMessageDialog(null, "Estoy dentro del bucle donde juego a como los Nones");
                     //Metodo para pedir numero
                     usuario = pedirNumeroUsuarioSinErrores(usuario);
@@ -66,11 +66,12 @@ public class ParesYnones {
                     }
                 }
             }
-                //condigimos del bucle para que se ejecute hay que escribir jugar
+            //condigimos del bucle para que se ejecute hay que escribir jugar
         } while (opcion.equalsIgnoreCase("jugar"));
 
     }
-        //String del menu
+    //String del menu
+
     public static String mostrarMenuJuego() {
         //String que contiene el texto del menu
         String texto = """
@@ -86,7 +87,7 @@ public class ParesYnones {
         String opcion = JOptionPane.showInputDialog(null, texto);
         return opcion;
     }
-        
+
     public static String pedirOpcion() {
         //declaramos el string opcion, que entramos en un bucle que opcion es igual
         //al menu y la opcion se iguala con el metodo del menu, y la condicion del si es valida
@@ -101,12 +102,13 @@ public class ParesYnones {
     public static boolean opcionValida(String opcion) {
         //declaramos en el parametro String opcion y que haga un return 
         //con las opciones jugar o salir 
-        
+
         return opcion.equalsIgnoreCase("Jugar")
                 || opcion.equalsIgnoreCase("Salir");
 
     }
-        //Menu del pares o nones
+    //Menu del pares o nones
+
     public static String menuParesOnones() {
 
         String texto = """
@@ -127,8 +129,9 @@ public class ParesYnones {
         return (codigo.equalsIgnoreCase("Pares") || codigo.equalsIgnoreCase("Nones"));
 
     }
-        //En este menu el String lo compajinamos con el menu pares o nones, y
+    //En este menu el String lo compajinamos con el menu pares o nones, y
     //el while con el metodo es esl pares o nones con el return del codigo
+
     public static String pedirParesOnones() {
         String codigo;
         do {
@@ -155,7 +158,7 @@ public class ParesYnones {
     }
 
     public static int numeroMaquina(int numeroMaquina) {
-        
+
         int maquina = (int) (Math.random() * 10 + 1);
         JOptionPane.showMessageDialog(null, "La maquina a escogido el numero : " + maquina);
         return maquina;
