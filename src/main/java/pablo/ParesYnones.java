@@ -30,39 +30,42 @@ public class ParesYnones {
 
                 //pedir pares o nones el menu
                 pares_o_nones = pedirParesOnones().toLowerCase();
-                //si no escribimos nones , nos metera en el bucle del los Pares , si le pones nones nos va a los nones
-                if (!pares_o_nones.equalsIgnoreCase("Nones")) {
+                //si no escribimos nones , nos metera en el bucle del los Pares , 
+                //si le pones nones nos va a los nones
+                if (pares_o_nones.equalsIgnoreCase("Pares")) {
                     //Panel para informar que estas en los pares
-                    JOptionPane.showMessageDialog(null, "Estoy dentro del los  Pares");
+                    System.out.println("Has seleccionado Pares");
                     //Metodo para pedir numero al usuario
                     usuario = pedirNumeroUsuarioSinErrores(usuario);
                     //variable para que se muestre lo que devuelve la variable maquina ene l metodo
-                    int maquina = 0;
-                    //metodo con su variable para que se vea lo de la maquina
-                    numero_maquina = numeroMaquina(maquina);
+                    
+                    //metodo con su variable para que se vea lo que devuelve el metodo maquina
+                    numero_maquina = numeroMaquina();
                     suma = sumaMaquinaUsuario(usuario, numero_maquina);
                     //si la suma de los 2 numeros divididos es resto da 0 ganas, si no pierdes
                     if (suma % 2 == 0) {
 
-                        JOptionPane.showMessageDialog(null, " Has ganado ");
+                        JOptionPane.showMessageDialog(null, +suma
+                                +" es Par ,"+ " has ganado ");
 
                     } else {
-                        JOptionPane.showMessageDialog(null, " Has perdido");
+                        JOptionPane.showMessageDialog(null,+suma
+                                +" Es Impar ," +" has perdido");
                     }
                 } else {
                     //Misma descripcion que arriba, solo qe si escribimos nones, nos lleva aqui
-                    JOptionPane.showMessageDialog(null, "Estoy dentro del bucle donde juego a como los Nones");
+                    System.out.println("Has seleccionado Nones");
                     //Metodo para pedir numero
                     usuario = pedirNumeroUsuarioSinErrores(usuario);
-                    int maquina = 0;
-                    numero_maquina = numeroMaquina(maquina);
+                    
+                    numero_maquina = numeroMaquina();
                     suma = sumaMaquinaUsuario(usuario, numero_maquina);
                     if (suma % 2 == 0) {
 
-                        JOptionPane.showMessageDialog(null, " Has ganado ");
+                        JOptionPane.showMessageDialog(null, +suma+" es Par, " +" has perdido ");
 
                     } else {
-                        JOptionPane.showMessageDialog(null, " Has perdido");
+                        JOptionPane.showMessageDialog(null,+suma +" es Impar, "+ " has ganado");
                     }
                 }
             }
@@ -112,7 +115,7 @@ public class ParesYnones {
     public static String menuParesOnones() {
 
         String texto = """
-                                Escriba lo que quiere jugar :
+                                Escriba lo que quiere seleccionar :
                      ---------------------------------------------
                                              Pares
                      ---------------------------------------------
@@ -126,7 +129,8 @@ public class ParesYnones {
 
     public static boolean esParesOnones(String codigo) {
         //en este metodo declaramos el string en el parametros para que pille por "codigo"
-        return (codigo.equalsIgnoreCase("Pares") || codigo.equalsIgnoreCase("Nones"));
+        return (codigo.equalsIgnoreCase("Pares") ||
+                codigo.equalsIgnoreCase("Nones"));
 
     }
     //En este menu el String lo compajinamos con el menu pares o nones, y
@@ -136,6 +140,7 @@ public class ParesYnones {
         String codigo;
         do {
             codigo = menuParesOnones();
+            //aqui se introduce la condicipon con el metodo anterior que devuelve el Pares y Nones
         } while (!esParesOnones(codigo));
 
         return codigo;
@@ -144,22 +149,29 @@ public class ParesYnones {
     public static int pedirNumeroUsuarioSinErrores(int numeroUsuario) {
         //Pedimos un entero al usuario 
         do {
-            String numero = JOptionPane.showInputDialog("Introduce un numero del 1 al 10: ");
+           
             try {
+                String numero = JOptionPane.showInputDialog("Introduce un numero del 1 al 10: ");
                 numeroUsuario = Integer.parseInt(numero);
-                JOptionPane.showMessageDialog(null, "El numero que has escogido es el: " + numero);
+                JOptionPane.showMessageDialog(null, "El numero "
+                        + "que has escogido es el: " + numero);
             } catch (NumberFormatException nfe) {
-                JOptionPane.showConfirmDialog(null, "No has introducido un número entero.");
+                JOptionPane.showConfirmDialog(null, "No has "
+                        + "introducido un número entero.");
             }
-        } while (numeroUsuario < 0 || numeroUsuario > 10);
+        } while (numeroUsuario < 1 || numeroUsuario > 10);
 
         return numeroUsuario;
 
     }
+    //Clase para generar el numero de la maquina
 
-    public static int numeroMaquina(int numeroMaquina) {
-
-        int maquina = (int) (Math.random() * 10 + 1);
+    public static int numeroMaquina() {
+        //Clase random para , gracias samuel
+        Random numeroAleatorio = new Random();
+        //El int de la maquina se iguala al numero random con un next Int para que sea int
+        //y 10 y fuera del parentesiss +1 para que pille los 10, si no seria hasta 9
+        int maquina = numeroAleatorio.nextInt(10) + 1;
         JOptionPane.showMessageDialog(null, "La maquina a escogido el numero : " + maquina);
         return maquina;
     }
@@ -169,8 +181,10 @@ public class ParesYnones {
 
         suma = numeroUsuario + numeroMaquina;
 
-        JOptionPane.showMessageDialog(null, " La suma de " + numeroUsuario + " y " + numeroMaquina + " es de " + suma);
+        JOptionPane.showMessageDialog(null, " La suma de " 
+                + numeroUsuario + " y " + numeroMaquina + " es de " + suma);
 
         return suma;
     }
+
 }

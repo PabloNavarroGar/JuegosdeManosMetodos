@@ -11,4 +11,5 @@
         <maven.compiler.target>18</maven.compiler.target>
         <exec.mainClass>pablo.ParesYnones</exec.mainClass>
     </properties>
+    <name>juegosdemanos</name>
 </project>
